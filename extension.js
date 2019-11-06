@@ -25,7 +25,7 @@ module.exports = function(nodecg) {
 
   const axios = require("axios");
   const instance = axios.create({
-    baseURL: "https://api.staging.justgiving.com",
+    baseURL: "https://api.justgiving.com",
     timeout: 10000,
     headers: { "Content-Type": "application/json" }
   });
