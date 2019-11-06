@@ -5,6 +5,10 @@ module.exports = function(nodecg) {
     defaultValue: []
   });
 
+  var totalRep = nodecg.Replicant("total", {
+    defaultValue: 0
+  });
+
   if (nodecg.bundleConfig.justgiving_appid === "") {
     nodecg.log.info(
       "Please set justgiving_appid in cfg/nodecg-justgiving.json"
@@ -33,8 +37,6 @@ module.exports = function(nodecg) {
 
     const donationsData = response.data;
 
-    nodecg.log.info(JSON.stringify(donationsData));
-
     for (let i = 0; i < donationsData.donations.length; i++) {
       var found = donationsRep.value.find(function(element) {
         return element.id === donationsData.donations[i].id;
@@ -47,9 +49,17 @@ module.exports = function(nodecg) {
     }
   }
 
+  async function askJustGivingForTotal() {
+    const response = await instance.get(
+      `/${nodecg.bundleConfig.justgiving_appid}/v1/fundraising/pages/${nodecg.bundleConfig.justgiving_shorturl}`
+    );
+
+    totalRep.value = response.data.totalRaisedOnline;
+  }
+
   function askJustGiving() {
     askJustGivingForDonations();
-    // askJustGivingForTotal()
+    askJustGivingForTotal();
   }
 
   setInterval(function() {
