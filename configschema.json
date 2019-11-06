@@ -1,0 +1,14 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "type": "object",
+  "properties": {
+    "justgiving_appid": {
+      "type": "string",
+      "default": ""
+    },
+    "justgiving_shorturl": {
+      "type": "string",
+      "default": ""
+    }
+  }
+}

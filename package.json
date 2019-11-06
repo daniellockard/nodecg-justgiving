@@ -1,0 +1,25 @@
+{
+  "name": "nodecg-justgiving",
+  "version": "0.0.0",
+  "description": "JustGiving API Client",
+  "homepage": "https://github.com/daniellockard/nodecg-justgiving",
+  "author": {
+    "name": "Danny Lockard",
+    "email": "danielhlockard@gmail.com",
+    "url": ""
+  },
+  "files": [
+    "extension.js"
+  ],
+  "keywords": [
+    "tiltify",
+    "nodecg-bundle"
+  ],
+  "nodecg": {
+    "compatibleRange": "^1.1.1"
+  },
+  "license": "Apache-2.0",
+  "dependencies": {
+    "axios": "^0.19.0"
+  }
+}
