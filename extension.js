@@ -53,8 +53,9 @@ module.exports = function(nodecg) {
     const response = await instance.get(
       `/${nodecg.bundleConfig.justgiving_appid}/v1/fundraising/pages/${nodecg.bundleConfig.justgiving_shorturl}`
     );
-
-    totalRep.value = response.data.totalRaisedOnline;
+    if (totalRep.value < response.data.totalRaisedOnline) {
+      totalRep.value = response.data.totalRaisedOnline;
+    }
   }
 
   function askJustGiving() {
