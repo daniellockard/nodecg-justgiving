@@ -38,6 +38,7 @@ module.exports = function (nodecg) {
 			);
 		} catch (e) {
 			nodecg.log.error(`Error: ${e}`);
+			return;
 		}
 
 		const donationsData = response.data;
