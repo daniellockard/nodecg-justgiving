@@ -31,15 +31,9 @@ module.exports = function (nodecg) {
 	});
 
 	async function askJustGivingForDonations() {
-		let response = {};
-		try {
-			response = await instance.get(
-				`/${nodecg.bundleConfig.justgiving_appid}/v1/fundraising/pages/${nodecg.bundleConfig.justgiving_shorturl}/donations`
-			);
-		} catch (e) {
-			nodecg.log.error(`Error: ${e}`);
-			return;
-		}
+		const response = await instance.get(
+			`/${nodecg.bundleConfig.justgiving_appid}/v1/fundraising/pages/${nodecg.bundleConfig.justgiving_shorturl}/donations`
+		);
 
 		const donationsData = response.data;
 
