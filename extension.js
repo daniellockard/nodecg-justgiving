@@ -25,15 +25,20 @@ module.exports = function (nodecg) {
 
 	const axios = require('axios');
 	const instance = axios.create({
-		baseURL: 'https://api.justgiving.com',
+		baseURL: 'https://api.staging.justgiving.com',
 		timeout: 10000,
 		headers: {'Content-Type': 'application/json'}
 	});
 
 	async function askJustGivingForDonations() {
-		const response = await instance.get(
-			`/${nodecg.bundleConfig.justgiving_appid}/v1/fundraising/pages/${nodecg.bundleConfig.justgiving_shorturl}/donations`
-		);
+		let response = {};
+		try {
+			response = await instance.get(
+				`/${nodecg.bundleConfig.justgiving_appid}/v1/fundraising/pages/${nodecg.bundleConfig.justgiving_shorturl}/donations`
+			);
+		} catch (e) {
+			nodecg.log.error(`Error: ${e}`);
+		}
 
 		const donationsData = response.data;
 
